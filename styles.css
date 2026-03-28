@@ -1,0 +1,19 @@
+/* ===== SMOOTH PAGE EXPERIENCE ===== */
+    /* Soft scrolling and improved touch comfort for family browsing */
+    html { scroll-behavior: smooth; }
+    body { text-rendering: optimizeLegibility; }
+    
+    /* ===== GLOW ACCENTS ===== */
+    /* Gentle ambient highlights for a warm early-learning atmosphere */
+    .soft-glow {
+      background: radial-gradient(circle at top left, rgba(255, 248, 196, 0.9), rgba(255,255,255,0) 40%),
+                  radial-gradient(circle at bottom right, rgba(209, 250, 229, 0.9), rgba(255,255,255,0) 35%);
+    }
+    
+    /* ===== HERO CARD FLOAT ===== */
+    /* Subtle motion to create a welcoming, lively first impression */
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+    .floaty { animation: floaty 5s ease-in-out infinite; }
