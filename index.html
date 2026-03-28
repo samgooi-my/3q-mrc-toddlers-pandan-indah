@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+
+<!-- SEO Meta Tags -->
+<title>3Q MRC Toddlers | Whole Brain Childcare in Pandan Indah, Ampang KL</title>
+<meta name="description" content="Warm, pastel nursery and childcare landing page for 3Q MRC Toddlers in Pandan Indah, Ampang, KL. Whole brain education for toddlers aged 6 months to 3 years." />
+<meta property="og:title" content="3Q MRC Toddlers | Whole Brain Childcare in Pandan Indah, Ampang KL" />
+<meta property="og:description" content="Warm, pastel nursery and childcare landing page for 3Q MRC Toddlers in Pandan Indah, Ampang, KL. Whole brain education for toddlers aged 6 months to 3 years." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="3Q MRC Toddlers | Whole Brain Childcare in Pandan Indah, Ampang KL" />
+<meta name="twitter:description" content="Warm, pastel nursery and childcare landing page for 3Q MRC Toddlers in Pandan Indah, Ampang, KL. Whole brain education for toddlers aged 6 months to 3 years." />
+<!-- End SEO Meta Tags -->
+
+<script data-field-replace>
+(function(){
+  var params=new URLSearchParams(window.location.search);
+  var fields={};
+  var paramMap={
+    'first_name':'firstName','last_name':'lastName','full_name':'fullName',
+    'email':'email','phone':'phone','company':'company',
+    'city':'city','state':'state','country':'country'
+  };
+  var skipTags={'SCRIPT':1,'STYLE':1,'NOSCRIPT':1,'TEXTAREA':1,'CODE':1,'PRE':1};
+  var hasUrlFields=false;
+  for(var p in paramMap){
+    var v=params.get(p);
+    if(v){fields[paramMap[p]]=v;hasUrlFields=true;}
+  }
+  var contactId=params.get('contact_id');
+  function esc(s){
+    if(!s)return s;
+    var d=document.createElement('div');
+    d.appendChild(document.createTextNode(s));
+    return d.innerHTML;
+  }
+  function doReplace(data){
+    var r={};
+    r['{{full_name}}']=esc(((data.firstName||'')+' '+(data.lastName||'')).trim()||((data.fullName||data.name)||''));
+    r['{{first_name}}']=esc(data.firstName||(data.name?data.name.split(' ')[0]:'')||'');
+    r['{{last_name}}']=esc(data.lastName||(data.name&&data.name.indexOf(' ')>-1?data.name.substring(data.name.indexOf(' ')+1):'')||'');
+    r['{{email}}']=esc(data.email||'');
+    r['{{phone}}']=esc(data.phone||'');
+    r['{{company}}']=esc(data.company||'');
+    r['{{city}}']=esc(data.city||'');
+    r['{{state}}']=esc(data.state||'');
+    r['{{country}}']=esc(data.country||'');
+    r['{{date}}']=new Date().toLocaleDateString();
+    r['{{time}}']=new Date().toLocaleTimeString();
+    r['{{location}}']=[data.city,data.state,data.country].filter(Boolean).join(', ');
+    r['{{tracking_id}}']=esc(data.trackingId||'');
+    r['{{lastClickedProduct}}']=esc(data.lastClickedProduct||'');
+    r['{{lastProductClickDate}}']=esc(data.lastProductClickDate||'');
+    r['{{lastClickedProductPrice}}']=esc(data.lastClickedProductPrice||'');
+    r['{{lastClickedProductURL}}']=esc(data.lastClickedProductURL||'');
+    r['{{productsClickedCount}}']=esc(data.productsClickedCount||'0');
+    r['{{ip_address}}']=esc(data.ipAddress||'');
+    r['{{ip}}']=esc(data.ipAddress||'');
+    if(data.customFields){
+      for(var k in data.customFields){
+        r['{{'+k+'}}']=esc(String(data.customFields[k]||''));
+      }
+    }
+    params.forEach(function(v,k){
+      if(!paramMap[k]&&k!=='contact_id'&&k!=='page_id'&&k.indexOf('utm_')!==0){
+        r['{{'+k+'}}']=esc(v);
+      }
+    });
+    var hasValues=false;
+    for(var key in r){if(r[key]){hasValues=true;break;}}
+    if(!hasValues)return;
+    var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{
+      acceptNode:function(n){
+        var p=n.parentNode;
+        if(p&&skipTags[p.nodeName])return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var node;
+    while(node=walker.nextNode()){
+      var txt=node.nodeValue;
+      if(txt&&txt.indexOf('{{')>-1){
+        var changed=txt;
+        for(var ph in r){
+          if(r[ph]&&changed.indexOf(ph)>-1){
+            changed=changed.split(ph).join(r[ph]);
+          }
+        }
+        if(changed!==txt)node.nodeValue=changed;
+      }
+    }
+    var attrs=['value','placeholder','content','alt','title'];
+    attrs.forEach(function(attr){
+      var els=document.querySelectorAll('['+attr+'*="{{"]');
+      for(var i=0;i<els.length;i++){
+        var tag=els[i].tagName;
+        if(skipTags[tag])continue;
+        var val=els[i].getAttribute(attr);
+        if(val){
+          var nv=val;
+          for(var ph in r){
+            if(r[ph]&&nv.indexOf(ph)>-1){
+              nv=nv.split(ph).join(r[ph]);
+            }
+          }
+          if(nv!==val)els[i].setAttribute(attr,nv);
+        }
+      }
+    });
+  }
+  function run(){
+    if(contactId){
+      var xhr=new XMLHttpRequest();
+      xhr.open('GET','https://paymegpt.com/api/landing/context/'+encodeURIComponent(contactId)+'?page_id=2723');
+      xhr.onload=function(){
+        if(xhr.status===200){
+          try{
+            var resp=JSON.parse(xhr.responseText);
+            if(resp.success&&resp.contact){
+              var merged=resp.contact;
+              for(var k in fields){merged[k]=fields[k];}
+              doReplace(merged);
+              return;
+            }
+          }catch(e){}
+        }
+        if(hasUrlFields)doReplace(fields);
+      };
+      xhr.onerror=function(){if(hasUrlFields)doReplace(fields);};
+      xhr.send();
+    }else if(hasUrlFields){
+      doReplace(fields);
+    }
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}
+  else{run();}
+})();
+</script>
+<script data-payment>
+(function(){
+  var slug='WAjree';
+  var apiBase='https://paymegpt.com';
+  function findEmail(){
+    var ids=['email','emailAddress','buyer-email','buyerEmail','user-email','userEmail','checkout-email','customer-email','contact-email'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.includes('@'))return el.value.trim();}
+    var inputs=document.querySelectorAll('input[type="email"],input[name*="email"],input[placeholder*="email"],input[placeholder*="Email"]');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.includes('@'))return inputs[j].value.trim();}
+    return '';
+  }
+  function findName(){
+    var ids=['name','fullName','full-name','buyer-name','buyerName','customer-name','userName','user-name'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value)return el.value.trim();}
+    var inputs=document.querySelectorAll('input[name*="name"]:not([name*="email"]):not([type="email"]),input[placeholder*="name"]:not([placeholder*="email"]):not([type="email"]),input[placeholder*="Name"]:not([type="email"])');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value)return inputs[j].value.trim();}
+    return '';
+  }
+  var __realProcessPayment=function(a,b,c,d,e){
+    var amountCents,email,productName,productDescription,customerName,quantity;
+    if(a&&typeof a==='object'){
+      amountCents=a.amountCents;email=a.email;productName=a.productName;
+      productDescription=a.productDescription||'';customerName=a.name||'';quantity=a.quantity||1;
+    }else{
+      amountCents=typeof a==='number'?a:0;productName=typeof b==='string'?b:'';
+      productDescription=typeof c==='string'?c:'';email='';customerName='';quantity=1;
+    }
+    if(!email)email=findEmail();
+    if(!customerName)customerName=findName();
+    if(!productName){alert('Product name is required.');return Promise.reject('no_product_name');}
+    if(!amountCents||amountCents<100){alert('Amount must be at least $1.00');return Promise.reject('invalid_amount');}
+    if(!email){alert('Please enter your email address.');return Promise.reject('no_email');}
+    var successBase=window.location.href.split('?')[0];
+    return fetch(apiBase+'/api/landing-pages/public/'+slug+'/payment/checkout',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email,name:customerName,amountCents:amountCents,productName:productName,productDescription:productDescription,quantity:quantity,successUrl:successBase+'?payment=success&product='+encodeURIComponent(productName)+'&session_id={CHECKOUT_SESSION_ID}',cancelUrl:successBase+'?payment=cancelled'})
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d.checkoutUrl){window.location.href=d.checkoutUrl;}
+      else{alert(d.error||'Failed to process payment');throw new Error(d.error);}
+    });
+  };
+  Object.defineProperty(window,'__processPayment',{value:__realProcessPayment,writable:false,configurable:false});
+  document.addEventListener('DOMContentLoaded',function(){
+    var urlParams=new URLSearchParams(window.location.search);
+    if(urlParams.get('payment')==='success'){
+      var pName=urlParams.get('product')||'your item';
+      var overlay=document.createElement('div');overlay.id='payment-success-overlay';
+      overlay.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:999999;font-family:system-ui,-apple-system,sans-serif;';
+      overlay.innerHTML='<div style="background:white;border-radius:16px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15);"><div style="width:64px;height:64px;border-radius:50%;background:#dcfce7;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><h2 style="margin:0 0 12px;font-size:24px;font-weight:700;color:#111827;">Payment Successful!</h2><p style="margin:0 0 24px;color:#6b7280;font-size:16px;">Thank you for purchasing '+pName.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'.</p><button onclick="document.getElementById(\'payment-success-overlay\').remove();window.history.replaceState({},\'\',window.location.pathname);" style="padding:12px 32px;font-size:16px;font-weight:600;background:#16a34a;color:white;border:none;border-radius:8px;cursor:pointer;">Continue</button></div>';
+      document.body.appendChild(overlay);
+    }
+  });
+})();
+</script>  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-amber-50 text-slate-700 antialiased">
+  <!-- ============================================================================ -->
+  <!-- HEADER / NAVIGATION: Brand identity, phone access, and quick navigation       -->
+  <!-- Features: Sticky header, prominent phone number, mobile-friendly spacing      -->
+  <!-- Mobile Padding: px-4 py-4 ensures controls never touch viewport edges         -->
+  <!-- ============================================================================ -->
+  <header class="sticky top-0 z-50 border-b border-emerald-100 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8">
+      <div class="flex items-center gap-3">
+        <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-200 text-lg font-bold text-emerald-900">3Q</div>
+        <div>
+          <p class="text-sm font-semibold text-emerald-800">3Q MRC Toddlers</p>
+          <p class="text-xs text-slate-500">Pandan Indah, Ampang, KL</p>
+        </div>
+      </div>
+      <div class="hidden items-center gap-4 md:flex">
+        <a href="#features" class="text-sm font-medium text-slate-600 hover:text-emerald-700">Features</a>
+        <a href="#why-choose-us" class="text-sm font-medium text-slate-600 hover:text-emerald-700">Why Us</a>
+        <a href="#enquiry" class="rounded-full bg-emerald-600 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-emerald-200 transition hover:bg-emerald-700">Book a Visit</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================================================================ -->
+    <!-- HERO SECTION: Main landing area with headline, subtext, and primary CTA      -->
+    <!-- Features: Pastel gradient, address/phone visibility, trust badges             -->
+    <!-- Mobile Padding: p-4 sm:p-6 md:p-8 prevents headline clipping on small screens -->
+    <!-- ============================================================================ -->
+    <section data-section="hero" class="soft-glow">
+      <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 md:px-8 lg:px-12 lg:py-16">
+        <div class="grid items-center gap-10 lg:grid-cols-2">
+          <div class="space-y-6">
+            <span class="inline-flex rounded-full bg-yellow-100 px-4 py-2 text-sm font-semibold text-yellow-800 ring-1 ring-yellow-200">Whole brain education for toddlers 6 months to 3 years</span>
+            <div class="space-y-4">
+              <h1 class="text-4xl font-extrabold tracking-tight text-emerald-900 sm:text-5xl lg:text-6xl">Where Little Minds Grow Big</h1>
+              <p class="max-w-xl text-lg leading-8 text-slate-600">At 3Q MRC Toddlers, we nurture each child with the 3Q Systems curriculum to develop multiple intelligences through loving guidance, playful learning, and a safe everyday routine.</p>
+            </div>
+            <div class="flex flex-col gap-3 sm:flex-row">
+              <a href="#enquiry" class="rounded-full bg-emerald-600 px-7 py-3 text-center font-semibold text-white shadow-lg shadow-emerald-200 transition hover:bg-emerald-700">Book a Visit</a>
+              <a href="tel:0182668999" class="rounded-full border border-emerald-200 bg-white px-7 py-3 text-center font-semibold text-emerald-800 transition hover:border-emerald-300 hover:bg-emerald-50">Call 018-266 8999</a>
+            </div>
+            <div class="grid gap-3 pt-2 sm:grid-cols-2">
+              <div class="rounded-2xl bg-white/80 p-4 shadow-sm ring-1 ring-emerald-100">
+                <p class="text-xs font-semibold uppercase tracking-wide text-emerald-600">Address</p>
+                <p class="mt-1 text-sm leading-6 text-slate-700">No. 35 Jalan Pandan Indah 18, Pandan Indah, Ampang, KL 55100</p>
+              </div>
+              <div class="rounded-2xl bg-white/80 p-4 shadow-sm ring-1 ring-emerald-100">
+                <p class="text-xs font-semibold uppercase tracking-wide text-emerald-600">Phone</p>
+                <p class="mt-1 text-sm leading-6 text-slate-700">018-266 8999</p>
+              </div>
+            </div>
+          </div>
+          <div class="floaty">
+            <div class="rounded-[2rem] bg-white p-5 shadow-2xl shadow-emerald-100 ring-1 ring-emerald-100">
+              <div class="rounded-[1.5rem] bg-gradient-to-br from-yellow-100 via-white to-emerald-100 p-6">
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="rounded-2xl bg-white p-4 shadow-sm">
+                    <p class="text-sm font-semibold text-emerald-800">Warm Care</p>
+                    <p class="mt-2 text-xs leading-5 text-slate-500">Gentle routines that help toddlers feel secure and happy.</p>
+                  </div>
+                  <div class="rounded-2xl bg-white p-4 shadow-sm">
+                    <p class="text-sm font-semibold text-emerald-800">Learning Through Play</p>
+                    <p class="mt-2 text-xs leading-5 text-slate-500">Age-appropriate activities that spark curiosity every day.</p>
+                  </div>
+                  <div class="col-span-2 rounded-2xl bg-emerald-600 p-5 text-white">
+                    <p class="text-sm font-semibold">Special for young explorers</p>
+                    <p class="mt-2 text-sm leading-6 text-emerald-50">A nurturing start for babies and toddlers to build confidence, communication, movement, and early thinking skills.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================================ -->
+    <!-- FEATURES SECTION: Core benefits and program highlights                        -->
+    <!-- Features: Clear cards, simple scanning, family-friendly messaging              -->
+    <!-- Mobile Padding: px-4 container spacing maintained on all breakpoints          -->
+    <!-- ============================================================================ -->
+    <section id="features" data-section="features" class="bg-white">
+      <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:px-8 lg:px-12">
+        <div class="max-w-2xl">
+          <h2 class="text-3xl font-bold tracking-tight text-emerald-900 sm:text-4xl">A caring start with purposeful learning</h2>
+          <p class="mt-4 text-base leading-7 text-slate-600">Our toddler programme blends early education, social-emotional growth, and daily care so parents can feel confident about their child’s first school experience.</p>
+        </div>
+        <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <article class="rounded-3xl bg-amber-50 p-6 ring-1 ring-amber-100">
+            <h3 class="text-lg font-semibold text-slate-900">Whole Brain Development</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">Activities designed to support logic, language, creativity, movement, and emotional growth in a balanced way.</p>
+          </article>
+          <article class="rounded-3xl bg-emerald-50 p-6 ring-1 ring-emerald-100">
+            <h3 class="text-lg font-semibold text-slate-900">3Q System Curriculum</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">A structured approach using the 3Q Systems to help develop multiple intelligences from the earliest years.</p>
+          </article>
+          <article class="rounded-3xl bg-yellow-50 p-6 ring-1 ring-yellow-100">
+            <h3 class="text-lg font-semibold text-slate-900">Qualified Teachers</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">Experienced educators guide each child with patience, warmth, and age-appropriate attention.</p>
+          </article>
+          <article class="rounded-3xl bg-sky-50 p-6 ring-1 ring-sky-100">
+            <h3 class="text-lg font-semibold text-slate-900">Safe & Nurturing Environment</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">Comfortable spaces, caring routines, and thoughtful supervision help children feel secure and settled.</p>
+          </article>
+          <article class="rounded-3xl bg-lime-50 p-6 ring-1 ring-lime-100">
+            <h3 class="text-lg font-semibold text-slate-900">Ages 6 Months to 3 Years</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">Programs tailored for infants and toddlers at every stage of early development.</p>
+          </article>
+          <article class="rounded-3xl bg-pink-50 p-6 ring-1 ring-pink-100">
+            <h3 class="text-lg font-semibold text-slate-900">Family-Oriented Care</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">We partner with parents to create a calm, consistent, and joyful foundation for growth.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================================ -->
+    <!-- WHY CHOOSE US SECTION: Trust-building points and location convenience         -->
+    <!-- Features: Location highlight, benefits list, reassuring tone                  -->
+    <!-- Mobile Padding: Ensures list text remains comfortably spaced                 -->
+    <!-- ============================================================================ -->
+    <section id="why-choose-us" data-section="why-choose-us" class="bg-emerald-50">
+      <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:px-8 lg:px-12">
+        <div class="grid gap-8 lg:grid-cols-2 lg:items-center">
+          <div>
+            <h2 class="text-3xl font-bold tracking-tight text-emerald-900 sm:text-4xl">Why parents choose 3Q MRC Toddlers</h2>
+            <p class="mt-4 text-base leading-7 text-slate-600">We understand that choosing childcare is a big family decision. That is why our environment focuses on trust, consistency, and meaningful development.</p>
+            <ul class="mt-6 space-y-4">
+              <li class="flex gap-3 rounded-2xl bg-white p-4 ring-1 ring-emerald-100"><span class="mt-1 h-2.5 w-2.5 rounded-full bg-emerald-500"></span><span class="text-slate-700"><strong>Small class sizes</strong> for more personal attention and smoother daily routines.</span></li>
+              <li class="flex gap-3 rounded-2xl bg-white p-4 ring-1 ring-emerald-100"><span class="mt-1 h-2.5 w-2.5 rounded-full bg-emerald-500"></span><span class="text-slate-700"><strong>Experienced educators</strong> who understand toddler needs and early milestones.</span></li>
+              <li class="flex gap-3 rounded-2xl bg-white p-4 ring-1 ring-emerald-100"><span class="mt-1 h-2.5 w-2.5 rounded-full bg-emerald-500"></span><span class="text-slate-700"><strong>Holistic development</strong> that nurtures mind, body, confidence, and social skills.</span></li>
+              <li class="flex gap-3 rounded-2xl bg-white p-4 ring-1 ring-emerald-100"><span class="mt-1 h-2.5 w-2.5 rounded-full bg-emerald-500"></span><span class="text-slate-700"><strong>Convenient Pandan Indah location</strong> for easy family drop-offs and visits.</span></li>
+            </ul>
+          </div>
+          <div class="rounded-[2rem] bg-white p-6 shadow-sm ring-1 ring-emerald-100">
+            <div class="rounded-[1.5rem] bg-gradient-to-br from-white to-emerald-100 p-6">
+              <p class="text-sm font-semibold uppercase tracking-wide text-emerald-700">Location</p>
+              <h3 class="mt-2 text-2xl font-bold text-slate-900">No. 35 Jalan Pandan Indah 18</h3>
+              <p class="mt-3 text-slate-600">Pandan Indah, Ampang, KL 55100</p>
+              <div class="mt-6 grid gap-4 sm:grid-cols-2">
+                <div class="rounded-2xl bg-white p-4 shadow-sm">
+                  <p class="text-sm font-semibold text-slate-900">Easy to reach</p>
+                  <p class="mt-1 text-sm text-slate-600">A practical location for working parents in the Ampang and Pandan Indah area.</p>
+                </div>
+                <div class="rounded-2xl bg-white p-4 shadow-sm">
+                  <p class="text-sm font-semibold text-slate-900">Friendly support</p>
+                  <p class="mt-1 text-sm text-slate-600">Speak with us directly to learn more about enrolment and scheduling.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================================ -->
+    <!-- ENQUIRY FORM SECTION: Parent contact capture with visit request               -->
+    <!-- Features: Accessible form, clear labels, strong CTA, family-friendly copy     -->
+    <!-- Mobile Padding: Form container uses ample spacing on small screens            -->
+    <!-- ============================================================================ -->
+    <section id="enquiry" data-section="enquiry" class="bg-white">
+      <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:px-8 lg:px-12">
+        <div class="grid gap-8 lg:grid-cols-2 lg:items-start">
+          <div>
+            <h2 class="text-3xl font-bold tracking-tight text-emerald-900 sm:text-4xl">Enrolment enquiry</h2>
+            <p class="mt-4 max-w-xl text-base leading-7 text-slate-600">Tell us a little about your child and your preferred start date. We will get back to you with friendly guidance and next steps.</p>
+            <div class="mt-6 rounded-3xl bg-amber-50 p-6 ring-1 ring-amber-100">
+              <p class="text-sm font-semibold text-slate-900">Prefer to call?</p>
+              <a href="tel:0182668999" class="mt-2 inline-block text-lg font-bold text-emerald-700">018-266 8999</a>
+              <p class="mt-2 text-sm leading-6 text-slate-600">We welcome questions from parents looking for warm, reliable childcare and whole brain learning for toddlers.</p>
+            </div>
+          </div>
+          <form class="rounded-[2rem] bg-emerald-50 p-6 shadow-sm ring-1 ring-emerald-100" id="enquiryForm">
+            <div class="grid gap-5">
+              <div>
+                <label for="parentName" class="text-sm font-semibold text-slate-700">Parent Name</label>
+                <input id="parentName" name="parentName" type="text" required class="mt-2 w-full rounded-2xl border-0 bg-white px-4 py-3 text-slate-800 shadow-sm ring-1 ring-emerald-100 placeholder:text-slate-400 focus:ring-2 focus:ring-emerald-400" placeholder="Your full name" />
+              </div>
+              <div>
+                <label for="childAge" class="text-sm font-semibold text-slate-700">Child Age</label>
+                <input id="childAge" name="childAge" type="text" required class="mt-2 w-full rounded-2xl border-0 bg-white px-4 py-3 text-slate-800 shadow-sm ring-1 ring-emerald-100 placeholder:text-slate-400 focus:ring-2 focus:ring-emerald-400" placeholder="e.g. 10 months / 2 years" />
+              </div>
+              <div>
+                <label for="phone" class="text-sm font-semibold text-slate-700">Phone</label>
+                <input id="phone" name="phone" type="tel" required class="mt-2 w-full rounded-2xl border-0 bg-white px-4 py-3 text-slate-800 shadow-sm ring-1 ring-emerald-100 placeholder:text-slate-400 focus:ring-2 focus:ring-emerald-400" placeholder="Your contact number" />
+              </div>
+              <div>
+                <label for="startDate" class="text-sm font-semibold text-slate-700">Preferred Start Date</label>
+                <input id="startDate" name="startDate" type="date" required class="mt-2 w-full rounded-2xl border-0 bg-white px-4 py-3 text-slate-800 shadow-sm ring-1 ring-emerald-100 focus:ring-2 focus:ring-emerald-400" />
+              </div>
+              <button type="submit" class="cta-primary rounded-full bg-emerald-600 px-6 py-3 font-semibold text-white shadow-lg shadow-emerald-200 transition hover:bg-emerald-700">Send Enquiry</button>
+              <p id="formStatus" class="text-sm text-slate-600" aria-live="polite"></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================================ -->
+    <!-- FINAL CTA SECTION: Strong closing invitation to book a visit                 -->
+    <!-- Features: Emotional reassurance, contact emphasis, action-oriented message   -->
+    <!-- Mobile Padding: Large tap targets and generous spacing                       -->
+    <!-- ============================================================================ -->
+    <section data-section="cta" class="bg-gradient-to-r from-emerald-600 to-lime-500">
+      <div class="mx-auto max-w-7xl px-4 py-14 text-center sm:px-6 md:px-8 lg:px-12">
+        <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Ready to visit a place made for little learners?</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-base leading-7 text-emerald-50">We would love to welcome your family, answer your questions, and show you how 3Q MRC Toddlers supports confident early growth.</p>
+        <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+          <a href="#enquiry" class="rounded-full bg-white px-7 py-3 font-semibold text-emerald-700 transition hover:bg-emerald-50">Book a Visit</a>
+          <a href="tel:0182668999" class="rounded-full border border-white/40 px-7 py-3 font-semibold text-white transition hover:bg-white/10">Call 018-266 8999</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================================ -->
+  <!-- FOOTER SECTION: Address, contact details, and closing brand reminder          -->
+  <!-- Features: Compact, readable, trust-building, mobile-safe padding              -->
+  <!-- Mobile Padding: p-4 md:p-8 ensures text is never clipped                      -->
+  <!-- ============================================================================ -->
+  <footer class="bg-slate-950 text-slate-300">
+    <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 md:px-8 lg:px-12">
+      <div class="grid gap-8 md:grid-cols-3">
+        <div>
+          <p class="text-lg font-semibold text-white">3Q MRC Toddlers</p>
+          <p class="mt-3 text-sm leading-6 text-slate-400">Whole brain education and loving childcare for toddlers aged 6 months to 3 years.</p>
+        </div>
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-wide text-emerald-300">Visit Us</p>
+          <p class="mt-3 text-sm leading-6 text-slate-400">No. 35 Jalan Pandan Indah 18<br />Pandan Indah, Ampang, KL 55100</p>
+        </div>
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-wide text-emerald-300">Contact</p>
+          <p class="mt-3 text-sm leading-6 text-slate-400">Phone: <a href="tel:0182668999" class="text-white hover:text-emerald-300">018-266 8999</a></p>
+        </div>
+      </div>
+      <div class="mt-8 border-t border-white/10 pt-6 text-sm text-slate-500">
+        <p>Warm, pastel, child-friendly care designed for happy beginnings and confident little steps.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+
+</html>
